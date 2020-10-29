@@ -48,7 +48,7 @@ public class GenericService<T> implements IGeneric<T> {
 
         return repo.findAll();
     }
-
+// Metodo para eliminar un registro segun su ID
     @Override
     public boolean deleteById(Integer id) {
         if (findById(id) != null) {
