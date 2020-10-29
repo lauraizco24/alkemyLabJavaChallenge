@@ -2,6 +2,7 @@ package ar.com.alkemylab.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ public class EnrollmentController {
     @Autowired
     EnrollmentService enrollService;
     
+    @CrossOrigin("*")
     @PostMapping("/students/{id}/enrollment")
     public ResponseEntity<GenericResponse> enroll(@PathVariable Integer id, @RequestBody EnrollmentRequest eR) {
 

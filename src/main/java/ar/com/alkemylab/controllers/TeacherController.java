@@ -3,6 +3,7 @@ package ar.com.alkemylab.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class TeacherController {
     @Autowired
     TeacherService tService;
 
+    @CrossOrigin("*")
     @PostMapping("/auth/teachers")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     public ResponseEntity<GenericResponse> createTeacher(@RequestBody TeacherRequest tRequest) {
@@ -41,7 +43,7 @@ public class TeacherController {
             return ResponseEntity.ok(r);
         }
     }
-
+    @CrossOrigin("*")
     @GetMapping("/teachers/{id}")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<Teacher> findTeacherById(@PathVariable Integer id) {
@@ -51,7 +53,7 @@ public class TeacherController {
         else
             return ResponseEntity.ok(teacher);
     }
-
+    @CrossOrigin("*")
     @PutMapping("/teachers/{id}")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<GenericResponse> modifTeacher(@PathVariable Integer id,
@@ -72,7 +74,7 @@ public class TeacherController {
         }
 
     }
-
+    @CrossOrigin("*")
     @PutMapping("/subject/{id}/teacher")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<GenericResponse> assignTeacherToSubject(@PathVariable Integer id,
@@ -91,7 +93,7 @@ public class TeacherController {
         }
 
     }
-
+    @CrossOrigin("*")
     @DeleteMapping("/teacher/{id}")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<GenericResponse> changeTeacherStatus(@PathVariable Integer id, @RequestBody StatusRequest statReq){

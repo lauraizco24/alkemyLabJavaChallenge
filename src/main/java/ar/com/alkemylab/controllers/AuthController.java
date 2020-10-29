@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class AuthController {
     @Autowired
     private JWTUserDetailsService userDetailsService;
 
-
+    @CrossOrigin("*")
     @PostMapping("/auth/register")
     public ResponseEntity<RegisterResponse> postRegisterUser(@RequestBody RegistrationRequest req) {
         RegisterResponse r = new RegisterResponse();
@@ -50,7 +51,7 @@ public class AuthController {
         return ResponseEntity.ok(r);
 
     }
-
+    @CrossOrigin("*")
     @PostMapping("/auth/login") // probando nuestro login
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest)
             throws Exception {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,8 @@ public class SubjectController {
 
     @Autowired
     SubjectService subService;
-
+    
+    @CrossOrigin("*")
     @PostMapping("/subject")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     public ResponseEntity<GenericResponse> createSubject(@RequestBody SubjectRequest sR) {
@@ -46,12 +48,10 @@ public class SubjectController {
         }
 
     }
-
+    @CrossOrigin("*")
     @GetMapping("/subjects")
     ResponseEntity<List<SubjectResponse>> getSubjects() {
 
-        
-      
        List<SubjectResponse> subjectList = new ArrayList<>(); 
 
         if ( subService.getAllSubjects().size() > 0) {
@@ -70,7 +70,7 @@ public class SubjectController {
 
     }
 
-
+    @CrossOrigin("*")
     @PutMapping("/subject/{id}")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<GenericResponse> modifySubject(@PathVariable Integer id,
@@ -90,8 +90,8 @@ public class SubjectController {
         }
 
     }
-
-    @DeleteMapping("/subject/{id}")
+    @CrossOrigin("*")
+    @DeleteMapping("/subject/{id}/delete")
     @PreAuthorize("hasAuthority('CLAIM_userType_ADMIN')")
     ResponseEntity<GenericResponse> deleteSubject(@PathVariable Integer id) {
         GenericResponse r = new GenericResponse();
