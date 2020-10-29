@@ -45,7 +45,7 @@ public class AdminService extends GenericService<Admin> {
     }
 
     public Admin AdminByDni(Integer dni) {
-
+//encontrar por ID
         return repo().findByDni(dni);
 
     }
